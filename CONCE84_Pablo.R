@@ -18,10 +18,15 @@ Hogares<-read.dbf("hogares.dbf")
 Conc<-merge(Conc,Hogares,by="FOLIO")
 
 Conc<-Conc%>%
-  mutate(INGCOR=INGCOR/N_OCUP)
+  filter(N_OCUP>0)
 
 Conc<-Conc%>%
   filter(TRABAJO>0)
+
+Conc<-Conc%>%
+  mutate(INGCOR=INGCOR/N_OCUP)
+
+
 
 
 
