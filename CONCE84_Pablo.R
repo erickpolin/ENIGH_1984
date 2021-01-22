@@ -21,7 +21,10 @@ Conc<-Conc%>%
   filter(N_OCUP>0)
 
 Conc<-Conc%>%
-  filter(TRABAJO>0)
+  mutate(bandera=ifelse(TRABAJO>0|NEGOCIO>0,1,0))
+
+Conc<-Conc%>%
+  filter(bandera==1)
 
 Conc<-Conc%>%
   mutate(INGCOR=INGCOR/N_OCUP)
